@@ -47,7 +47,8 @@ def _nice(mx):
         return [0, 1]
     raw = mx / 4
     mag = 10 ** math.floor(math.log10(raw))
-    step = next(m * mag for m in (1, 2, 2.5, 5, 10) if m * mag >= raw)
+    steps = (1, 2, 2.5, 5, 10) if mag >= 10 else (1, 2, 5, 10)   # no 2.5 steps for small counts
+    step = next(m * mag for m in steps if m * mag >= raw)
     n = math.ceil(mx / step - 1e-9)
     return [round(i * step, 6) for i in range(n + 1)]
 

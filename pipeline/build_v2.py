@@ -526,7 +526,7 @@ def build(mode):
     # ---------- about ----------
     about = f"""<section class="page-head about-head">
   <h1 class="reveal">Caffeinated, not biased.</h1>
-  <p class="page-lede reveal">Jaipur Café Index is independent research by {E(au['name'])}, based in Jaipur. I read every café listing in
+  <p class="page-lede reveal">The Café Paper is independent research by {E(au['name'])}, based in Jaipur. I read every café listing in
   C-Scheme and Malviya Nagar, match them into one record, and publish what the data says in plain words, updated twice a month.</p>
 </section>
 <section class="who" id="who" aria-labelledby="who-h">
@@ -612,14 +612,14 @@ def build(mode):
                              "The cafés in C-Scheme and Malviya Nagar doing it best right now, and what each one did right, from public facts.",
                              best, here="The best"))
     write("method/", shell("method/", f"How the numbers are made · {site['title']}",
-                           "The statistics behind Jaipur Café Index in plain words: medians, intervals, shuffle tests, like-for-like models and clustering. Data to download.",
+                           "The statistics behind The Café Paper in plain words: medians, intervals, shuffle tests, like-for-like models and clustering. Data to download.",
                            method, here="Method", scripts=f'\n<script src="../{asset("explain.js")}" defer></script>'))
     if updates:
         write("updates/", shell("updates/", f"Free café insights on WhatsApp · {site['title']}",
                                 "Fresh findings on Jaipur's cafés, twice a month, free on WhatsApp. Short, and only when there is something new.",
                                 updates, here="Free updates", main_cls="main-updates"))
     write("about/", shell("about/", f"About · {site['title']}",
-                          f"Who is behind Jaipur Café Index: {au['name']}, who grew up in Jaipur and studies how businesses win and lose in its markets. How to get in touch.",
+                          f"Who is behind The Café Paper: {au['name']}, who grew up in Jaipur and studies how businesses win and lose in its markets. How to get in touch.",
                           about, here="About"))
     L = json.load(open(ROOT / "data/public/location_latest.json")) if (ROOT / "data/public/location_latest.json").exists() else None
     pb_index, pb_pages = playbook_v2.pages(I, F, L, k, core, "../../")   # links are written from a problem page, two folders down

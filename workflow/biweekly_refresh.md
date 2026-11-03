@@ -5,10 +5,10 @@ the parity check below skips alternate weeks, since plain cron can't say "every 
 
 ---
 
-You are refreshing **Jaipur Café Index** (formerly Jaipur Café Pulse), an independent record of cafés in C-Scheme and
+You are refreshing **The Café Paper** (formerly Jaipur Café Index, and before that Jaipur Café Pulse), an independent record of cafés in C-Scheme and
 Malviya Nagar, Jaipur. Project folder: `/Users/sarthak/Documents/projects/consulting-business/cafes`.
 Work only inside it. Two git repositories live here:
-- the folder itself → `sarthakkk23/jaipur-cafe-pulse` (public: site, aggregates, copy)
+- the folder itself → `sarthakkk23/cafe-paper` (public: site, aggregates, copy)
 - `private/` → `sarthakkk23/jaipur-cafe-pulse-data` (private: raw pulls, per-venue data)
 
 Never copy anything from `private/` into the public repo except through

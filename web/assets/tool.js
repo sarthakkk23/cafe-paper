@@ -147,7 +147,7 @@
       if (v.rating != null) lines.push(`Google rating: ${v.rating}`);
       if (v.open != null) lines.push(`Opens at: ${clock(v.open)}`);
     }
-    const body = `Hi Sarthak,\n\nI used the benchmark on Jaipur Café Index.\n${lines.join("\n")}\n\n`;
+    const body = `Hi Sarthak,\n\nI used the benchmark on The Café Paper.\n${lines.join("\n")}\n\n`;
     const href = `mailto:${D.email}?subject=${encodeURIComponent(D.subject)}&body=${encodeURIComponent(body)}`;
     const head = mode === "owner" ? "Questions about your numbers?" : "Planning a café?";
     const text = mode === "owner" ? "If these figures raise a question about your café, ask me. Your numbers come pre-filled in the email, and the best questions become the next findings."

@@ -1,4 +1,4 @@
-// Jaipur Café Index — progressive enhancement only. The page reads fine without this file.
+// The Café Paper — progressive enhancement only. The page reads fine without this file.
 (() => {
   window.__pulse = true;          // tells the head guard the script arrived
   const root = document.documentElement;

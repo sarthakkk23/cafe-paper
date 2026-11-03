@@ -1,4 +1,4 @@
-# Jaipur Café Index
+# The Café Paper
 
 Jaipur's cafés, measured. (Formerly Jaipur Café Pulse.)
 
@@ -30,7 +30,7 @@ workflow/biweekly_refresh.md the scheduled Claude task: collect -> aggregate -> 
 python3 -m http.server 8411 --directory dist
 ```
 
-Live at https://sarthakkk23.github.io/jaipur-cafe-pulse once the first deploy runs.
+Live at https://sarthakkk23.github.io/cafe-paper once the first deploy runs.
 
 ## House rules
 
@@ -51,5 +51,5 @@ Live at https://sarthakkk23.github.io/jaipur-cafe-pulse once the first deploy ru
 
 ## Licence
 
-Code: MIT (see LICENSE). Published aggregates may be cited with attribution to Jaipur Café Index
+Code: MIT (see LICENSE). Published aggregates may be cited with attribution to The Café Paper
 and the snapshot date.

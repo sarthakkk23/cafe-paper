@@ -1,20 +1,20 @@
-# Jaipur Café Index (formerly Jaipur Café Pulse) — project config.
+# The Café Paper (formerly Jaipur Café Index, and before that Jaipur Café Pulse) — project config.
 # Three data layers, kept apart on disk:
 #   private/raw/      RAW: every source pull. Its own private git repo; never in this one.
 #   private/reports/  PER-VENUE: owner reports, delivered privately. Also private.
 #   data/public/      DERIVED AGGREGATES: the only layer the website reads.
 
 site:
-  title: "Jaipur Café Index"
+  title: "The Café Paper"
   # what search engines and link previews show; plain words people actually search for
   tagline: "Independent data on cafés in Jaipur's C-Scheme and Malviya Nagar: what customers reward, where the gaps are, in plain words. Updated twice a month."
-  seo_title: "Jaipur Café Index · Café data for C-Scheme & Malviya Nagar"
+  seo_title: "The Café Paper · Café data for C-Scheme & Malviya Nagar"
   areas: ["C-Scheme", "Malviya Nagar"]
   author:
     name: "Sarthak Oberoi"
     linkedin: "https://www.linkedin.com/in/sarthak-oberoi-analyst/"
     email: "sarthakoberoi12@gmail.com"
-    email_subject: "Jaipur Café Index"
+    email_subject: "The Café Paper"
     # Sarthak's own words. {cafes} is replaced at build time with the current count of operating cafés.
     # bio_short opens "Get in touch" on the home page; bio_long is the full "Who's behind it" on the About page.
     bio_short:
@@ -26,7 +26,7 @@ site:
       - "My work is finding that edge. I collect the right data, which is harder than collecting a lot of it. I run the analysis, from simple medians up to regressions that compare like with like, until a number stops being a coincidence. Then I keep going until every finding answers one question: so what should the person running the business do next?"
       - "Cafés came first because they're one of the most interesting markets in the city: {cafes} of them in two neighbourhoods, most with ten rivals a short walk away, where small details separate the ones that last. The method works for any business with a decision riding on a guess. If yours has one, I'd like to hear it."
       - "I run this on my own, update it twice a month, and keep the research here free."
-  base_url: "https://sarthakkk23.github.io/jaipur-cafe-pulse"
+  base_url: "https://sarthakkk23.github.io/cafe-paper"
 
 publish:
   # Any aggregate built from fewer venues than this is suppressed (shown as "fewer than N").

@@ -3,7 +3,7 @@
 Jaipur's cafés, measured. (Formerly Jaipur Café Pulse.)
 
 An independent, dated record of the café scene in C-Scheme and Malviya Nagar, Jaipur,
-refreshed every two weeks. The public site shows aggregates only, and it names a café
+refreshed every month. The public site shows aggregates only, and it names a café
 only to credit it.
 
 ## How it fits together
@@ -19,7 +19,7 @@ pipeline/check_publish.py    the gate: no invented numbers, no names, no critici
 pipeline/build_site.py       aggregates + copy + kudos + web/ -> dist/ (static, no framework)
 web/assets/                  styles and the motion layer (scroll scenes, reveals, chart draw-in)
 .github/workflows/site.yml   PRs: gate + preview build. main: gate + build + deploy to GitHub Pages
-workflow/biweekly_refresh.md the scheduled Claude task: collect -> aggregate -> rewrite -> PR
+workflow/monthly_refresh.md  the scheduled Claude task: collect -> aggregate -> cross-check -> PR
 ```
 
 ## Build locally

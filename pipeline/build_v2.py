@@ -152,6 +152,13 @@ def curtain(name):
     letters = "".join(f'<span style="--c:{n}">{E(c)}</span>' for n, c in enumerate(name))
     return f'<div class="curtain" aria-hidden="true"><p class="cur-name">{letters}</p></div>\n'
 
+def loader(label):
+    """Every page opens on its own name on ink, which then lifts; a second panel covers the page as you leave. CSS-only; decoration."""
+    letters = "".join(f'<span style="--c:{n}">{E(c)}</span>' for n, c in enumerate(label))
+    site = "" if label == SEO["name"] else f'<p class="ld-site"><span>{E(SEO["name"])}</span></p>'
+    return (f'<div class="loader" aria-hidden="true">{site}<p class="ld-page">{letters}</p><i class="ld-line"></i></div>'
+            '<div class="leave" aria-hidden="true"></div>\n')
+
 def shell(path, title, desc, body, ld=None, here="", scripts="", main_cls="", crumb=None, nxt=None):
     """One page: head, menu, the page's own content, a breadcrumb with the next page, and the footer."""
     pre = "../" * path.count("/")
@@ -169,7 +176,7 @@ def shell(path, title, desc, body, ld=None, here="", scripts="", main_cls="", cr
     where = " › ".join(f'<a href="{pre}{u}">{E(n)}</a>' for n, u, _ in trail[:-1]) + (f" › <span>{E(trail[-1][0])}</span>" if len(trail) > 1 else "")
     nav_end = (f'<nav class="trail" aria-label="Breadcrumb and next page"><p class="tr-where">{where}</p>'
                f'<a class="tr-next" href="{pre}{nxt[0]}"><span>Next</span>{E(nxt[1] if nxt[0] else "Back to the start")}</a></nav>') if path else ""
-    return (head(title, desc, pre, path, ld) + scripts + "\n</head>\n<body>\n" + (curtain(SEO["name"]) if not path else "") + CTX["banner"] + bar(pre, here)
+    return (head(title, desc, pre, path, ld) + scripts + "\n</head>\n<body>\n" + (curtain(SEO["name"]) if not path else "") + loader(here or (crumb[-1][0] if crumb else SEO["name"])) + CTX["banner"] + bar(pre, here)
             + f'\n<main class="{main_cls}">\n' + body + "\n" + nav_end + "\n</main>\n" + footer(pre) + "\n</body>\n</html>\n")
 
 
@@ -514,9 +521,12 @@ def build(mode):
   <ul class="best-list ex-list">{"".join(f'<li class="reveal"><a href="{u}"><span class="best-name">{E(t)}</span><span class="ex-p">{E(d)}</span><span class="best-go">Open</span></a></li>' for u, t, d in cards)}</ul>
 </section>"""
     picks = [F[x] for x in ("attention", "survey_word_of_mouth" if "survey_word_of_mouth" in F else "platforms_rate", "delivery") if x in F]
-    teasers = f"""<section class="teasers" aria-labelledby="teasers-h">
-  <h2 id="teasers-h" class="reveal">Three findings to start with.</h2>
-  <div class="tz-grid">{"".join(f'<a class="tz reveal" href="insights/#f-{E(f["id"])}"><span class="tz-num">{f["value"]}<small>{E(f["unit"])}</small></span><span class="tz-head">{E(f["headline"])}</span></a>' for f in picks)}</div>
+    teasers = f"""<section class="teasers hs" aria-labelledby="teasers-h">
+  <div class="hs-pin">
+  <header class="hs-head"><h2 id="teasers-h" class="reveal">Three findings to start with.</h2><p class="hs-hint" aria-hidden="true">Keep scrolling</p></header>
+  <div class="hs-view"><div class="tz-grid hs-track">{"".join(f'<a class="tz" href="insights/#f-{E(f["id"])}"><span class="tz-num">{f["value"]}<small>{E(f["unit"])}</small></span><span class="tz-head">{E(f["headline"])}</span></a>' for f in picks)}<a class="tz tz-end" href="insights/"><span class="tz-head">All {len(F)} findings, in plain words.</span><span class="tz-go">Open Insights</span></a></div></div>
+  <div class="hs-meter" aria-hidden="true"><i></i></div>
+  </div>
 </section>"""
 
     # ---------- insights: the findings, with a jump bar ----------

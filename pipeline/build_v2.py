@@ -67,7 +67,8 @@ def asset(name):
 def head(title, desc, prefix="", path="", ld=None):
     """Everything a search engine or a link preview reads: title, description, canonical address, Open Graph and
     Twitter cards, icons, and structured data (JSON-LD) describing the page."""
-    guard = 'document.documentElement.classList.add("js");setTimeout(function(){if(!window.__pulse)document.documentElement.classList.remove("js","motion")},3000)'
+    guard = ('(function(d){d.classList.add("js");try{if(sessionStorage.getItem("cp-seen"))d.classList.add("seen");else sessionStorage.setItem("cp-seen","1")}'
+             'catch(e){d.classList.add("seen")}setTimeout(function(){if(!window.__pulse)d.classList.remove("js","motion")},3000)})(document.documentElement)')
     url = f"{SEO['base']}/{path}"
     image = f"{SEO['base']}/og.jpg"
     ld_tag = f'\n<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' if ld else ""
@@ -145,6 +146,12 @@ def footer(pre=""):
 </footer>"""
 
 
+
+def curtain(name):
+    """The first page of a visit opens on the name, rising letter by letter on ink; CSS lifts it away. Decoration only."""
+    letters = "".join(f'<span style="--c:{n}">{E(c)}</span>' for n, c in enumerate(name))
+    return f'<div class="curtain" aria-hidden="true"><p class="cur-name">{letters}</p></div>\n'
+
 def shell(path, title, desc, body, ld=None, here="", scripts="", main_cls="", crumb=None, nxt=None):
     """One page: head, menu, the page's own content, a breadcrumb with the next page, and the footer."""
     pre = "../" * path.count("/")
@@ -162,7 +169,7 @@ def shell(path, title, desc, body, ld=None, here="", scripts="", main_cls="", cr
     where = " › ".join(f'<a href="{pre}{u}">{E(n)}</a>' for n, u, _ in trail[:-1]) + (f" › <span>{E(trail[-1][0])}</span>" if len(trail) > 1 else "")
     nav_end = (f'<nav class="trail" aria-label="Breadcrumb and next page"><p class="tr-where">{where}</p>'
                f'<a class="tr-next" href="{pre}{nxt[0]}"><span>Next</span>{E(nxt[1] if nxt[0] else "Back to the start")}</a></nav>') if path else ""
-    return (head(title, desc, pre, path, ld) + scripts + "\n</head>\n<body>\n" + CTX["banner"] + bar(pre, here)
+    return (head(title, desc, pre, path, ld) + scripts + "\n</head>\n<body>\n" + (curtain(SEO["name"]) if not path else "") + CTX["banner"] + bar(pre, here)
             + f'\n<main class="{main_cls}">\n' + body + "\n" + nav_end + "\n</main>\n" + footer(pre) + "\n</body>\n</html>\n")
 
 

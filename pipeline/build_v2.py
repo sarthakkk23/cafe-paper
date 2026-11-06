@@ -277,7 +277,7 @@ def build(mode):
         <button type="button" class="rot-btn">Pause</button><span class="rot-count" aria-hidden="true"></span></div>
     </div>
     <script type="application/json" id="rot-data">{rot_data}</script>
-    <div class="hero-foot"><p class="hero-act"><a class="btn" href="insights/">Read the {len(F)} insights</a>{'<a class="btn btn-ghost" href="updates/">Get them free on WhatsApp</a>' if CTX["updates"] else ""}</p>
+    <div class="hero-foot"><p class="hero-act"><a class="btn" href="insights/">Read the insights</a>{'<a class="btn btn-ghost" href="updates/">Get them free on WhatsApp</a>' if CTX["updates"] else ""}</p>
     <p class="hero-meta">C-Scheme and Malviya Nagar · updated {E(captured)} · <a class="rot-how" href="insights/#f-{E(lead_f['id'])}">How I know</a></p></div>
   </div>
   <div class="hero-obj">
@@ -294,7 +294,7 @@ def build(mode):
     intro = f"""<section class="intro" aria-label="About this record">
   <p class="lead reveal">I read every café listing in Jaipur's C-Scheme and Malviya Nagar, {E(core)} cafés in all, so you don't have to.
   Then I tell you, in plain words, what the data says and what it doesn't: what customers reward, where the gaps are, and what a
-  rating really means. I refresh it twice a month, so the numbers stay current.</p>
+  rating really means. I refresh it every month, so the numbers stay current.</p>
   <div class="cols">
     <p class="reveal"><b>Plain words.</b> Each finding is one sentence and one number: a share of cafés, and what it means for yours.</p>
     <p class="reveal"><b>What it doesn't say.</b> Every finding also says where it stops, so you never read more into it than is there.</p>
@@ -428,14 +428,14 @@ def build(mode):
   <script type="application/json" id="pulse-data">{tool_data}</script>
 </section>"""
 
-    # ---------- free updates, twice a month ----------
+    # ---------- free updates, every month ----------
     if live or mode == "draft":
         fields = sub.get("fields") or {}
         name_field = (f'<label class="field"><span>Your name</span><input type="text" name="{E(fields["name"])}" '
                       f'autocomplete="name" required maxlength="80"></label>') if fields.get("name") else ""
         updates = f"""<section class="updates" id="updates" aria-labelledby="updates-h">
   <div class="up-copy reveal">
-    <h1 id="updates-h">Fresh findings, twice a month.</h1>
+    <h1 id="updates-h">Fresh findings, every month.</h1>
     <p>Free. Each update brings the newest findings on Jaipur's cafés straight to your WhatsApp: what customers reward, what is changing,
     and where the openings are. Short: the newest findings and what they mean for your café. No stale beans.</p>
   </div>
@@ -508,14 +508,14 @@ def build(mode):
 
 
     # ---------- home: what you'll find, and three findings to start with ----------
-    cards = [("insights/", "Insights", f"{len(F)} findings on {core} cafés, each in one sentence, with what it means for yours."),
+    cards = [("insights/", "Insights", f"What {T.get('scene.venues_tracked', '')} listings and {core} cafés say, each finding in one sentence, with what it means for yours."),
              ("playbook/", "Playbook", "The most common problems café owners here face, and a practical fix for each, with the maths shown."),
              ("location/", "Location check", "Pick any spot and read its five-minute walk: cafés, gaps, and who is around to buy coffee."),
              ("your-cafe/", "Your café", "Set your area, type and numbers; see where you stand. Computed in your browser."),
              ("best/", "The best", "The cafés doing it best right now, and what each one did right."),
              ("method/", "Method", "The statistics in plain words, what counts as a café, and the data to download.")]
     if CTX["updates"]:
-        cards.append(("updates/", "Free updates", "Fresh findings on WhatsApp, twice a month, free."))
+        cards.append(("updates/", "Free updates", "Fresh findings on WhatsApp, every month, free."))
     explore = f"""<section class="explore" aria-labelledby="explore-h">
   <header class="ch-head reveal"><h2 id="explore-h">Find what you came for.</h2><p>Everything here, one click away. Start with the findings, or go straight to your street.</p></header>
   <ul class="best-list ex-list">{"".join(f'<li class="reveal"><a href="{u}"><span class="best-name">{E(t)}</span><span class="ex-p">{E(d)}</span><span class="best-go">Open</span></a></li>' for u, t, d in cards)}</ul>
@@ -524,7 +524,7 @@ def build(mode):
     teasers = f"""<section class="teasers hs" aria-labelledby="teasers-h">
   <div class="hs-pin">
   <header class="hs-head"><h2 id="teasers-h" class="reveal">Three findings to start with.</h2><p class="hs-hint" aria-hidden="true">Keep scrolling</p></header>
-  <div class="hs-view"><div class="tz-grid hs-track">{"".join(f'<a class="tz" href="insights/#f-{E(f["id"])}"><span class="tz-num">{f["value"]}<small>{E(f["unit"])}</small></span><span class="tz-head">{E(f["headline"])}</span></a>' for f in picks)}<a class="tz tz-end" href="insights/"><span class="tz-head">All {len(F)} findings, in plain words.</span><span class="tz-go">Open Insights</span></a></div></div>
+  <div class="hs-view"><div class="tz-grid hs-track">{"".join(f'<a class="tz" href="insights/#f-{E(f["id"])}"><span class="tz-num">{f["value"]}<small>{E(f["unit"])}</small></span><span class="tz-head">{E(f["headline"])}</span></a>' for f in picks)}<a class="tz tz-end" href="insights/"><span class="tz-head">Every finding, in plain words.</span><span class="tz-go">Open Insights</span></a></div></div>
   <div class="hs-meter" aria-hidden="true"><i></i></div>
   </div>
 </section>"""
@@ -534,7 +534,7 @@ def build(mode):
                 + [("offer", "What cafés offer"), ("day", "When they open"), ("place", "Where they gather")])
     ins_head = f"""<section class="page-head">
   <h1 class="reveal">What the data says.</h1>
-  <p class="page-lede reveal">{len(F)} findings on {E(core)} cafés in C-Scheme and Malviya Nagar, and on the people who choose them. Each is one
+  <p class="page-lede reveal">What {E(core)} cafés in C-Scheme and Malviya Nagar, and the people who choose them, tell us. Each finding is one
   sentence and one number, with what it means for you, what it doesn't say, and how I know.</p>
   <nav class="jump reveal" aria-label="On this page">{"".join(f'<a href="#{a}">{E(t)}</a>' for a, t in chapters)}</nav>
 </section>"""
@@ -544,7 +544,7 @@ def build(mode):
     about = f"""<section class="page-head about-head">
   <h1 class="reveal">Caffeinated, not biased.</h1>
   <p class="page-lede reveal">The Café Paper is independent research by {E(au['name'])}, based in Jaipur. I read every café listing in
-  C-Scheme and Malviya Nagar, match them into one record, and publish what the data says in plain words, updated twice a month.</p>
+  C-Scheme and Malviya Nagar, match them into one record, and publish what the data says in plain words, updated every month.</p>
 </section>
 <section class="who" id="who" aria-labelledby="who-h">
   <div class="who-side">
@@ -618,7 +618,7 @@ def build(mode):
                                                          {"@type": "ListItem", "position": 2, "name": "Insights", "item": f"{SEO['base']}/insights/"}]},
         dataset]}
     write("insights/", shell("insights/", f"What the data says about Jaipur's cafés · {site['title']}",
-                             f"{len(F)} findings on {core} cafés in C-Scheme and Malviya Nagar, Jaipur: reviews, ratings, delivery, prices, menus, hours and clustering, in plain words.",
+                             f"What {core} cafés in C-Scheme and Malviya Nagar, Jaipur, tell us: reviews, ratings, delivery, prices, menus, hours and clustering, in plain words.",
                              "\n".join([ins_head, ch1, ch_cust, band, ch2, pair, sundial, ch3]), ld=ins_ld, here="Insights"))
     write("your-cafe/", shell("your-cafe/", f"Compare your café with Jaipur's · {site['title']}",
                               "Set your area, type and numbers and see where your café stands among cafés in C-Scheme and Malviya Nagar, Jaipur. Computed in your browser.",
@@ -633,7 +633,7 @@ def build(mode):
                            method, here="Method", scripts=f'\n<script src="../{asset("explain.js")}" defer></script>'))
     if updates:
         write("updates/", shell("updates/", f"Free café insights on WhatsApp · {site['title']}",
-                                "Fresh findings on Jaipur's cafés, twice a month, free on WhatsApp. Short, and only when there is something new.",
+                                "Fresh findings on Jaipur's cafés, every month, free on WhatsApp. Short, and only when there is something new.",
                                 updates, here="Free updates", main_cls="main-updates"))
     write("about/", shell("about/", f"About · {site['title']}",
                           f"Who is behind The Café Paper: {au['name']}, who grew up in Jaipur and studies how businesses win and lose in its markets. How to get in touch.",

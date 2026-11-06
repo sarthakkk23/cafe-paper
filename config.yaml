@@ -7,7 +7,7 @@
 site:
   title: "The Café Paper"
   # what search engines and link previews show; plain words people actually search for
-  tagline: "Independent data on cafés in Jaipur's C-Scheme and Malviya Nagar: what customers reward, where the gaps are, in plain words. Updated twice a month."
+  tagline: "Independent data on cafés in Jaipur's C-Scheme and Malviya Nagar: what customers reward, where the gaps are, in plain words. Updated every month."
   seo_title: "The Café Paper · Café data for C-Scheme & Malviya Nagar"
   areas: ["C-Scheme", "Malviya Nagar"]
   author:
@@ -19,13 +19,13 @@ site:
     # bio_short opens "Get in touch" on the home page; bio_long is the full "Who's behind it" on the About page.
     bio_short:
       - "I'm Sarthak Oberoi. I grew up in Jaipur, and I study how businesses win and lose in markets like this one."
-      - "I run this on my own, update it twice a month, and keep the research here free."
+      - "I run this on my own, update it every month, and keep the research here free."
     bio_long:
       - "I'm Sarthak Oberoi. I grew up in Jaipur, and I study how businesses win and lose in markets like this one."
       - "In any market, someone is ahead of you because they know something you don't. That's the edge. It rarely sits in the big, obvious numbers everyone already watches. It usually hides in the part you'd never think to check: the hour you open, how your listing reads on one app, what a customer mentions in passing. Get a small thing like that right and it compounds. Get it wrong and it quietly costs you, every day, without you ever noticing."
       - "My work is finding that edge. I collect the right data, which is harder than collecting a lot of it. I run the analysis, from simple medians up to regressions that compare like with like, until a number stops being a coincidence. Then I keep going until every finding answers one question: so what should the person running the business do next?"
       - "Cafés came first because they're one of the most interesting markets in the city: {cafes} of them in two neighbourhoods, most with ten rivals a short walk away, where small details separate the ones that last. The method works for any business with a decision riding on a guess. If yours has one, I'd like to hear it."
-      - "I run this on my own, update it twice a month, and keep the research here free."
+      - "I run this on my own, update it every month, and keep the research here free."
   base_url: "https://sarthakkk23.github.io/cafe-paper"
 
 publish:
@@ -35,10 +35,10 @@ publish:
   max_single_venue_share: 0.25
   # Venue names may appear on the site only through approved entries in content/kudos.yaml.
   names_only_via_kudos: true
-  # false: the biweekly task stops at a draft for review. true: it builds and deploys.
-  auto_publish: true   # set 17 Oct 2026 by Sarthak: merge refreshes when every check passes
+  # false: the monthly task stops at a draft for review. true: it builds and deploys.
+  auto_publish: false  # 6 Nov 2026, Sarthak: refreshes are monthly and he merges them himself (see ../monthly/README.md)
 
-# Free twice-a-month updates on WhatsApp. The site is static, so sign-ups (a mobile number only) post to a Google Form that writes to Sarthak's own
+# Free monthly updates on WhatsApp. The site is static, so sign-ups (a mobile number only) post to a Google Form that writes to Sarthak's own
 # Google Sheet. The section stays off the public page until provider and action are set.
 #   provider: google_form | formspree | none
 #   action:   the form's .../formResponse URL (Google) or the Formspree endpoint

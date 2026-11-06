@@ -1,4 +1,4 @@
-# Site copy. Rewritten by Claude on every biweekly run, reviewed by Sarthak.
+# Site copy. Rewritten by Claude on every monthly run, reviewed by Sarthak.
 #
 # Rules (enforced by pipeline/check_publish.py):
 #   - Every data value comes in as a {{token}} from data/public/insights_latest.json.
@@ -16,7 +16,7 @@ hero:
   headline: "Jaipur's café scene, *measured*."
   lede: >-
     {{scene.core_cafes}} operating cafés across C-Scheme and Malviya Nagar, counted,
-    compared and re-measured every two weeks. Every figure here is an aggregate,
+    compared and re-measured every month. Every figure here is an aggregate,
     with its source and its date.
 
 highlights:
@@ -238,7 +238,7 @@ method:
     - title: "Public listings, same method every time"
       text: >-
         Figures come from public café listings on Google Maps, Zomato, Swiggy and magicpin,
-        refreshed every two weeks with the same searches in the same areas.
+        refreshed every month with the same searches in the same areas.
     - title: "Aggregates only"
       text: >-
         Every number describes a group of cafés. Any group smaller than

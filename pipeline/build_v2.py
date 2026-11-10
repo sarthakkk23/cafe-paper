@@ -20,6 +20,7 @@ import playbook_v2  # noqa: E402
 
 E = html.escape
 TYPES = ["Coffee-led", "Tea & chai", "Bakery", "All-day café"]
+MAIN, JEWEL = "https://sarthakkk23.github.io/pink-city-papers/", "https://sarthakkk23.github.io/jewellery-paper/"
 
 PHOTOS = {
     "hawa-mahal-sky": ("The Hawa Mahal's pink sandstone face against a pale morning sky, Jaipur", "Nikunj Mundra", "https://unsplash.com/photos/W3qWtMNwRf0", 3200, 3706),
@@ -118,6 +119,14 @@ def pages_live():
     return [(u, l) for u, l in PAGES if u != "updates/" or CTX.get("updates")]
 
 
+def family(pre=""):
+    """The three Pink City Papers sites as buttons above the menu, this one marked, so each is one click from the others."""
+    cur = ' aria-current="true"'
+    sites = [("Pink City Papers", "Pink City Papers", MAIN, ""), ("The Café Paper", "Cafés", pre or "./", cur), ("The Jewellery Paper", "Jewellery", JEWEL, "")]
+    return ('<nav class="family" aria-label="Pink City Papers sites">'
+            + "".join(f'<a href="{u}"{c}><span class="fam-l">{E(l)}</span><span class="fam-s">{E(s)}</span></a>' for l, s, u, c in sites) + "</nav>")
+
+
 def bar(pre="", here=""):
     """The same menu on every page; on phones it folds into a menu button."""
     cur = ' aria-current="page"'
@@ -176,7 +185,7 @@ def shell(path, title, desc, body, ld=None, here="", scripts="", main_cls="", cr
     where = " › ".join(f'<a href="{pre}{u}">{E(n)}</a>' for n, u, _ in trail[:-1]) + (f" › <span>{E(trail[-1][0])}</span>" if len(trail) > 1 else "")
     nav_end = (f'<nav class="trail" aria-label="Breadcrumb and next page"><p class="tr-where">{where}</p>'
                f'<a class="tr-next" href="{pre}{nxt[0]}"><span>Next</span>{E(nxt[1] if nxt[0] else "Back to the start")}</a></nav>') if path else ""
-    return (head(title, desc, pre, path, ld) + scripts + "\n</head>\n<body>\n" + (curtain(SEO["name"]) if not path else "") + loader(here or (crumb[-1][0] if crumb else SEO["name"])) + CTX["banner"] + bar(pre, here)
+    return (head(title, desc, pre, path, ld) + scripts + "\n</head>\n<body>\n" + (curtain(SEO["name"]) if not path else "") + loader(here or (crumb[-1][0] if crumb else SEO["name"])) + family(pre) + CTX["banner"] + bar(pre, here)
             + f'\n<main class="{main_cls}">\n' + body + "\n" + nav_end + "\n</main>\n" + footer(pre) + "\n</body>\n</html>\n")
 
 

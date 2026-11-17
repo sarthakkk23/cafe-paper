@@ -21,6 +21,7 @@ import playbook_v2  # noqa: E402
 E = html.escape
 TYPES = ["Coffee-led", "Tea & chai", "Bakery", "All-day café"]
 MAIN, JEWEL = "https://sarthakkk23.github.io/pink-city-papers/", "https://sarthakkk23.github.io/jewellery-paper/"
+ESTATE = "https://sarthakkk23.github.io/real-estate-paper/"
 
 PHOTOS = {
     "hawa-mahal-sky": ("The Hawa Mahal's pink sandstone face against a pale morning sky, Jaipur", "Nikunj Mundra", "https://unsplash.com/photos/W3qWtMNwRf0", 3200, 3706),
@@ -120,9 +121,10 @@ def pages_live():
 
 
 def family(pre=""):
-    """The three Pink City Papers sites as buttons above the menu, this one marked, so each is one click from the others."""
+    """The Pink City Papers sites as buttons above the menu, this one marked, so each is one click from the others."""
     cur = ' aria-current="true"'
-    sites = [("Pink City Papers", "Pink City Papers", MAIN, ""), ("The Café Paper", "Cafés", pre or "./", cur), ("The Jewellery Paper", "Jewellery", JEWEL, "")]
+    sites = [("Pink City Papers", "Pink City Papers", MAIN, ""), ("The Café Paper", "Cafés", pre or "./", cur), ("The Jewellery Paper", "Jewellery", JEWEL, ""),
+             ("The Real Estate Paper", "Real estate", ESTATE, "")]
     return ('<nav class="family" aria-label="Pink City Papers sites">'
             + "".join(f'<a href="{u}"{c}><span class="fam-l">{E(l)}</span><span class="fam-s">{E(s)}</span></a>' for l, s, u, c in sites) + "</nav>")
 
